@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  /* Warm neutral ground — reads as considered and export-grade, not startup-SaaS */
+  --color-bone: #faf8f4;
+  --color-bone-deep: #f2eee6;
+  --color-line: #e2dbcf;
+  --color-line-soft: #ece7dd;
+
+  --color-ink: #16181d;
+  --color-ink-soft: #3d434e;
+  --color-muted: #6b7280;
+
+  /* Brand: deep indigo, the traditional dye colour, used with restraint */
+  --color-indigo-deep: #16324f;
+  --color-indigo: #1f4671;
+  --color-indigo-light: #e8eef5;
+
+  /* Accent: clay/madder, used sparingly for emphasis only */
+  --color-clay: #b0503a;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bone);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Editorial display type for headings */
+.font-display {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+/* Small uppercase label used above section headings */
+.eyebrow {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-clay);
+}
+
+::selection {
+  background-color: var(--color-indigo-deep);
+  color: var(--color-bone);
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
