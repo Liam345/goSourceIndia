@@ -1,7 +1,8 @@
 # GoSourceIndia
 
 Buyer-facing site for GoSourceIndia — the landing point for cold email campaigns
-targeting overseas buyers of soft furnishings, floor coverings and apparel.
+targeting overseas buyers of soft furnishings, floor coverings, apparel and
+handicrafts.
 
 Built with Next.js 16 (App Router), React 19, Tailwind CSS v4, TypeScript.
 
@@ -115,7 +116,7 @@ src/
     page.tsx               home
     products/              index + [slug] category pages (statically generated)
     capabilities/          hidden future route for QC, compliance, certifications, trade terms
-    process/               hidden future route for five-stage process with turnarounds
+    process/               detailed sourcing process page
     about/                 story + positioning vs agents and single factories
     enquiry/               RFQ form
     api/rfq/route.ts       form handler
@@ -130,9 +131,12 @@ Adding a category = adding one object to the `categories` array in `site.ts`.
 The products index, the category page, the footer and the enquiry dropdown all
 pick it up automatically.
 
-Hidden future routes: `/capabilities` and `/process` still exist in the app for
-future reference, but they are intentionally removed from public navigation and
-return the not-found page on direct visits.
+Hidden future route: `/capabilities` still exists in the app for future
+reference, but it is intentionally removed from public navigation and returns
+the not-found page on direct visits.
+
+The `/process` route is a live page for the detailed GoSourceIndia sourcing
+process. It is linked from the main navigation.
 
 Detailed product capability pages also exist at `/products/[slug]`, generated
 from `categories` in `site.ts`. They are kept for future reference, but the

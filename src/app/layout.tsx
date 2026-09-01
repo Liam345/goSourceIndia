@@ -25,12 +25,13 @@ export const metadata: Metadata = {
     template: `%s — ${company.name}`,
   },
   description:
-    "Sourcing partner for soft furnishings, floor coverings and apparel from India. Vetted factory network, floor-level quality control, full export documentation.",
+    "Sourcing partner for soft furnishings, floor coverings, apparel and handicrafts from India. Vetted factory network, floor-level quality control and export coordination.",
   keywords: [
     "India sourcing agent",
     "home textiles supplier India",
     "rug supplier India",
     "apparel sourcing India",
+    "handicrafts sourcing India",
     "soft furnishings exporter",
     "private label manufacturing India",
   ],

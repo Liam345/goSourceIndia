@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { curatedProducts } from "@/content/site";
 import { Arrow } from "@/components/ui";
 
@@ -50,12 +50,53 @@ function ProductArtwork({ visual }: { visual: ProductVisual }) {
 }
 
 export function CuratedProducts() {
+  const scrollerRef = useRef<HTMLDivElement>(null);
   const [activeGroupId, setActiveGroupId] = useState<ProductGroup["id"]>(
     curatedProducts.groups[0].id,
   );
+  const [canScrollBackward, setCanScrollBackward] = useState(false);
+  const [canScrollForward, setCanScrollForward] = useState(false);
   const activeGroup =
     curatedProducts.groups.find((group) => group.id === activeGroupId) ??
     curatedProducts.groups[0];
+
+  const updateScrollState = () => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    const maxScroll = scroller.scrollWidth - scroller.clientWidth;
+    setCanScrollBackward(scroller.scrollLeft > 8);
+    setCanScrollForward(scroller.scrollLeft < maxScroll - 8);
+  };
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    scroller.scrollTo({ left: 0 });
+    updateScrollState();
+
+    const frame = window.requestAnimationFrame(updateScrollState);
+    window.addEventListener("resize", updateScrollState);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("resize", updateScrollState);
+    };
+  }, [activeGroup.id]);
+
+  const scrollProducts = (direction: "backward" | "forward") => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    scroller.scrollBy({
+      left:
+        direction === "forward"
+          ? scroller.clientWidth * 0.75
+          : -scroller.clientWidth * 0.75,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <section className="border-b border-line-soft bg-bone py-20 sm:py-28">
@@ -129,23 +170,57 @@ export function CuratedProducts() {
               ))}
             </div>
 
-            <div className="mt-8 max-w-full overflow-hidden pb-4 sm:overflow-x-auto sm:[scrollbar-width:none] sm:[&::-webkit-scrollbar]:hidden">
-              <div className="grid grid-cols-2 gap-4 sm:flex sm:min-w-max">
-                {activeGroup.items.map((item) => (
-                  <div
-                    key={item.label}
-                    className="group relative aspect-[3/4] w-full shrink-0 overflow-hidden rounded-lg bg-bone-deep shadow-[0_12px_28px_rgba(22,24,29,0.08)] sm:w-64 lg:w-[13.25rem]"
-                  >
-                    <ProductArtwork visual={item.visual} />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 via-ink/25 to-transparent p-4 pt-16">
-                      <p className="flex items-center gap-1 text-xl font-bold leading-tight text-white">
-                        {item.label}
-                        <Arrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
-                      </p>
+            <div className="relative mt-8">
+              <div
+                ref={scrollerRef}
+                onScroll={updateScrollState}
+                className="max-w-full overflow-hidden pb-4 sm:overflow-x-auto sm:[scrollbar-width:none] sm:[&::-webkit-scrollbar]:hidden"
+              >
+                <div className="grid grid-cols-2 gap-4 sm:flex sm:min-w-max">
+                  {activeGroup.items.map((item) => (
+                    <div
+                      key={item.label}
+                      className="group relative aspect-[3/4] w-full shrink-0 overflow-hidden rounded-lg bg-bone-deep shadow-[0_12px_28px_rgba(22,24,29,0.08)] sm:w-64 lg:w-[13.25rem]"
+                    >
+                      <ProductArtwork visual={item.visual} />
+                      <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 via-ink/25 to-transparent p-4 pt-16">
+                        <p className="flex items-center gap-1 text-xl font-bold leading-tight text-white">
+                          {item.label}
+                          <Arrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                        </p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
+
+              {canScrollBackward ? (
+                <button
+                  type="button"
+                  aria-label="Show previous products"
+                  onClick={() => scrollProducts("backward")}
+                  className="absolute left-3 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-indigo-deep shadow-[0_12px_30px_rgba(22,24,29,0.16)] ring-1 ring-line transition-colors hover:text-clay sm:flex"
+                >
+                  <Arrow className="rotate-180" />
+                </button>
+              ) : null}
+
+              {canScrollForward ? (
+                <>
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-y-0 right-0 hidden w-24 bg-gradient-to-l from-bone via-bone/85 to-transparent sm:block"
+                  />
+                  <button
+                    type="button"
+                    aria-label="Show more products"
+                    onClick={() => scrollProducts("forward")}
+                    className="absolute right-3 top-1/2 z-10 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-indigo-deep shadow-[0_12px_30px_rgba(22,24,29,0.16)] ring-1 ring-line transition-colors hover:text-clay sm:flex"
+                  >
+                    <Arrow />
+                  </button>
+                </>
+              ) : null}
             </div>
           </div>
         </div>
