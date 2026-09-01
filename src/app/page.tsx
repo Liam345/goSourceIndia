@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import {
   categories,
   factoryNetwork,
@@ -236,13 +235,12 @@ export default function Home() {
 
               <div className="mt-10 flex flex-wrap gap-3">
                 {categories.map((category) => (
-                  <Link
+                  <span
                     key={category.slug}
-                    href={`/products/${category.slug}`}
-                    className="rounded-full border border-line bg-bone px-5 py-2.5 text-sm font-semibold text-indigo-deep transition-colors hover:border-indigo-deep hover:text-clay"
+                    className="rounded-full border border-line bg-bone px-5 py-2.5 text-sm font-semibold text-indigo-deep"
                   >
                     {category.shortName}
-                  </Link>
+                  </span>
                 ))}
               </div>
             </div>

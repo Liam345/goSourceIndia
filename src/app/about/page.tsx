@@ -11,7 +11,7 @@ import {
 export const metadata: Metadata = {
   title: "About",
   description:
-    "GoSourceIndia is a sourcing partner in India for home textiles, floor coverings and apparel — a vetted factory network with people on the ground in every cluster we work in.",
+    "GoSourceIndia is a sourcing partner in India for home textiles, floor coverings, apparel and handicrafts, with a verified factory network and people on the ground in every cluster we work in.",
 };
 
 export default function AboutPage() {
@@ -60,10 +60,11 @@ export default function AboutPage() {
                 while the work is still in progress.
               </p>
               <p>
-                We work across soft home, floor coverings and apparel because
-                many buyers source these categories together, but usually have
-                to manage them through separate suppliers. Our role is to keep
-                that sourcing process joined up, practical and accountable.
+                We work across soft home, floor coverings, apparel and
+                handicrafts because many buyers source these categories
+                together, but usually have to manage them through separate
+                suppliers. Our role is to keep that sourcing process joined up,
+                practical and accountable.
               </p>
               <p>
                 We spend our time in India&apos;s sourcing clusters, building a
@@ -134,9 +135,9 @@ export default function AboutPage() {
       <Section>
         <SectionHeading
           eyebrow="What we cover"
-          title="Three verticals, one accountable desk"
+          title="Core verticals, one accountable desk"
         />
-        <div className="mt-12 grid gap-6 sm:grid-cols-3">
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {pillarCategories.map((category) => (
             <div
               key={category.slug}

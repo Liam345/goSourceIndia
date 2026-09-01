@@ -22,7 +22,8 @@
 
 export const company = {
   name: "GoSourceIndia",
-  tagline: "Sourcing partner for home textiles, floor coverings and apparel",
+  tagline:
+    "Sourcing partner for home textiles, floor coverings, apparel and handicrafts",
   // The one-sentence pitch. This is what lands in cold email and in the hero.
   positioning:
     "We are a sourcing partner in India, not a broker with an inbox. We select the factory, hold the spec through the run, inspect on the floor, and ship to your door.",
@@ -67,7 +68,7 @@ export const hero = {
    * sentence is appended to the visually-hidden <h1> so both get one clear
    * description of the business.
    */
-  accessibleSummary: `${company.name} is a sourcing partner in India for soft furnishings, floor coverings and apparel.`,
+  accessibleSummary: `${company.name} is a sourcing partner in India for soft furnishings, floor coverings, apparel and handicrafts.`,
   ctaLabel: "Talk to us",
 };
 
@@ -368,6 +369,71 @@ export const categories: Category[] = [
     isPillar: true,
   },
   {
+    slug: "handicrafts",
+    name: "Handicrafts & Lifestyle",
+    shortName: "Handicrafts",
+    summary:
+      "Handmade home decor, lighting, furniture, tableware and lifestyle pieces across wood, metal, cane, ceramic, glass and natural fibres.",
+    intro:
+      "Handicrafts are not a single factory category. The right production base depends on material, finish, hand process, packing tolerance and buyer safety requirement. We work with verified units and artisan-led production bases that can make handmade lifestyle products with export discipline.",
+    products: [
+      "Lamp shades and lighting accessories",
+      "Accent furniture and small furniture",
+      "Home decor and decorative accessories",
+      "Wall decor, mirrors and frames",
+      "Baskets, storage and natural fibre products",
+      "Tableware, serveware and kitchen accessories",
+      "Planters, vases and garden decor",
+      "Candle holders, lanterns and festive decor",
+      "Gift items and seasonal collections",
+    ],
+    capabilities: [
+      {
+        heading: "Materials",
+        items: [
+          "Wood, mango wood, acacia and engineered wood",
+          "Iron, brass, aluminium and mixed-metal constructions",
+          "Cane, bamboo, rattan, jute, seagrass and water hyacinth",
+          "Ceramic, terracotta, stone, glass and recycled material options",
+        ],
+      },
+      {
+        heading: "Techniques",
+        items: [
+          "Hand carving, turning, weaving and assembly",
+          "Metal casting, hammering, welding and powder coating",
+          "Hand painting, enamel work, polishing and distressed finishes",
+          "Mixed-material development for lifestyle and decor ranges",
+        ],
+      },
+      {
+        heading: "Export control",
+        items: [
+          "Finish matching against buyer reference or approved sample",
+          "Drop-test and export packing review for fragile goods",
+          "Moisture, odour, sharp-edge and surface-finish checks",
+          "Retail labelling, barcode and carton-mark coordination",
+        ],
+      },
+    ],
+    clusters: [
+      { name: "Moradabad", note: "metalware, lighting, decor and mixed-material products" },
+      { name: "Saharanpur", note: "wood carving, boxes, trays and decorative woodware" },
+      { name: "Jodhpur", note: "furniture, iron-wood decor and lifestyle accessories" },
+      { name: "Jaipur", note: "blue pottery, block-printed decor, jewellery and craft finishes" },
+      { name: "Khurja & Firozabad", note: "ceramics, glassware and decorative accents" },
+    ],
+    moq: "Quoted by material, size and finish", // TODO
+    leadTime: "Quoted after sample and packing review", // TODO
+    compliance: [
+      "Factory social audit where required",
+      "FSC or recycled claims only with valid documentation",
+      "REACH / Prop 65 review for buyer-specific programmes",
+      "Drop-test and transit packing standards for fragile products",
+    ],
+    isPillar: true,
+  },
+  {
     slug: "toys",
     name: "Toys",
     shortName: "Toys",
@@ -471,6 +537,80 @@ export const curatedProducts = {
   ],
 } as const;
 
+export const workingProcess = {
+  eyebrow: "How it works",
+  title: "The GoSourceIndia process, end to end.",
+  lead:
+    "A buyer should not have to chase factories, guess what is happening on the floor, or manage five disconnected suppliers. This is the practical sequence we follow from first enquiry to shipment.",
+  steps: [
+    {
+      step: "01",
+      label: "Simple enquiry process",
+      title: "Start with what you already have",
+      body:
+        "You do not need a perfect tech pack to start. Share the product information you have, and we turn it into a factory-ready enquiry.",
+      details: [
+        "Send a tech pack, sketch, reference photo, sample image or product idea.",
+        "Share the quantity range, target market, delivery window and any compliance requirement.",
+        "We clarify missing details before the enquiry is placed with a factory.",
+      ],
+      visual: "brief",
+    },
+    {
+      step: "02",
+      label: "Factory match and costing",
+      title: "Place the product in the right cluster",
+      body:
+        "The same product can be quoted very differently depending on where it is made. We match the requirement to the cluster and factory type that genuinely fits it.",
+      details: [
+        "We map the product by category, material, technique, finish and order size.",
+        "Only verified factories are considered for the programme.",
+        "You get a practical view of sample path, likely costing inputs and what needs to be confirmed next.",
+      ],
+      visual: "factory",
+    },
+    {
+      step: "03",
+      label: "Sample and pre-production",
+      title: "Make the sample path clear",
+      body:
+        "Before bulk production starts, the product needs a clear sample, material and construction trail. This is where most later confusion is removed.",
+      details: [
+        "Fabric, yarn, backing, trims, finishes and packaging inputs are checked against the brief.",
+        "Samples are reviewed for measurement, hand-feel, finish and workmanship.",
+        "Bulk notes are agreed before the order moves into production.",
+      ],
+      visual: "sample",
+    },
+    {
+      step: "04",
+      label: "Production followed closely",
+      title: "Stay close while the order is running",
+      body:
+        "The most useful checks happen while the order is still in progress, not after the cartons are packed.",
+      details: [
+        "Material booking, cutting, stitching, finishing and packing are tracked through the run.",
+        "Updates come from the floor while the work is still correctable.",
+        "If something starts drifting, it is raised early with the next practical action.",
+      ],
+      visual: "production",
+    },
+    {
+      step: "05",
+      label: "Checked and shipped",
+      title: "Finish the order properly",
+      body:
+        "The final stage is about getting the goods checked, packed, documented and dispatched without loose ends.",
+      details: [
+        "Measurements, workmanship, labels, packing and carton details are checked before dispatch.",
+        "Third-party inspection can be coordinated when the buyer programme requires it.",
+        "Shipment documents and logistics coordination are handled through final dispatch.",
+      ],
+      visual: "shipping",
+    },
+  ],
+} as const;
+
 /**
  * The service model. This is the section that separates you from a broker who
  * forwards emails to three factories and marks up the reply.
@@ -532,5 +672,6 @@ export const tradeTerms = {
 
 export const nav = [
   { href: "/products", label: "Products" },
+  { href: "/process", label: "Process" },
   { href: "/about", label: "About" },
 ];

@@ -32,12 +32,17 @@ const categoryImages: Record<
     alt: "Wooden toys for a children's product range",
     objectPosition: "center 58%",
   },
+  handicrafts: {
+    src: "/products/handicrafts.jpg",
+    alt: "Handmade home decor vase and natural material arrangement",
+    objectPosition: "center 64%",
+  },
 };
 
 export const metadata: Metadata = {
   title: "Products",
   description:
-    "Soft furnishings, floor coverings, apparel and toys sourced from India. Product ranges GoSourceIndia can review for overseas buyers.",
+    "Soft furnishings, floor coverings, apparel, handicrafts and toys sourced from India. Product ranges GoSourceIndia can review for overseas buyers.",
 };
 
 export default function ProductsPage() {

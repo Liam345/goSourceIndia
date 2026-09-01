@@ -14,7 +14,7 @@ import {
 export const metadata: Metadata = {
   title: "Capabilities",
   description:
-    "Quality control, compliance, certifications, export documentation and trade terms for sourcing home textiles, floor coverings and apparel from India.",
+    "Quality control, compliance, certifications, export documentation and trade terms for sourcing home textiles, floor coverings, apparel and handicrafts from India.",
   robots: {
     index: false,
     follow: false,

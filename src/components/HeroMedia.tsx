@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import type { HeroMediaItem } from "@/content/site";
 import { heroMedia } from "@/content/site";
 
@@ -14,28 +17,72 @@ function MediaCell({
   item: HeroMediaItem;
   className?: string;
 }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoReady, setVideoReady] = useState(false);
   const kind = inferKind(item);
   const shell = `relative overflow-hidden rounded-2xl bg-bone-deep ${className}`;
+
+  useEffect(() => {
+    if (kind !== "video") return;
+
+    const video = videoRef.current;
+    if (!video) return;
+
+    const markReady = () => setVideoReady(true);
+
+    if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) {
+      markReady();
+    }
+
+    video.addEventListener("loadeddata", markReady);
+    video.addEventListener("canplay", markReady);
+
+    return () => {
+      video.removeEventListener("loadeddata", markReady);
+      video.removeEventListener("canplay", markReady);
+    };
+  }, [kind]);
 
   if (kind === "video") {
     return (
       <div className={shell}>
+        {item.poster ? (
+          // Safari/iOS can decline autoplay or stall on first paint. Keep a
+          // real image behind the video so the collage never becomes blank.
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={item.poster}
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover"
+            style={{ objectPosition: item.objectPosition }}
+          />
+        ) : null}
         {/*
           Autoplaying video must be muted + playsInline or iOS refuses to play it.
           It is decorative, so it carries an aria-label rather than a caption.
         */}
         <video
-          src={item.src}
+          ref={videoRef}
           poster={item.poster}
           autoPlay
           muted
           loop
           playsInline
           preload="auto"
+          onCanPlay={() => setVideoReady(true)}
+          onLoadedData={() => setVideoReady(true)}
           aria-label={item.label}
-          className="absolute inset-0 h-full w-full object-cover"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-500 ${
+            videoReady ? "opacity-100" : "opacity-0"
+          }`}
           style={{ objectPosition: item.objectPosition }}
-        />
+        >
+          <source
+            src={item.src}
+            type='video/mp4; codecs="avc1.42E01F"'
+          />
+        </video>
       </div>
     );
   }
@@ -93,15 +140,13 @@ export function HeroMedia() {
   const [first, second] = heroMedia.stacked;
 
   return (
-    <div className="grid grid-cols-[1.08fr_1fr] items-stretch gap-5">
+    <div className="grid aspect-[1.18/1] grid-cols-[1.08fr_1fr] grid-rows-2 items-stretch gap-5">
       <MediaCell
         item={heroMedia.tall}
-        className="aspect-[3/5] sm:aspect-[3/5]"
+        className="row-span-2"
       />
-      <div className="flex min-h-0 flex-col gap-4">
-        <MediaCell item={first} className="min-h-0 flex-1" />
-        <MediaCell item={second} className="min-h-0 flex-1" />
-      </div>
+      <MediaCell item={first} />
+      <MediaCell item={second} />
     </div>
   );
 }
