@@ -20,6 +20,11 @@ const productImages = {
   kids: "/products/kids.jpg",
   men: "/products/men.jpg",
   women: "/products/women.jpg",
+  handicraftsFeature: "/products/handicrafts.jpg",
+  lampShades: "/products/handicrafts-lamp-shades.jpg",
+  accentFurniture: "/products/handicrafts-accent-furniture.jpg",
+  homeDecor: "/products/handicrafts-home-decor.jpg",
+  baskets: "/products/handicrafts-baskets.jpg",
 } satisfies Record<ProductVisual, string>;
 
 const productImagePositions = {
@@ -32,6 +37,11 @@ const productImagePositions = {
   kids: "center center",
   men: "center center",
   women: "center center",
+  handicraftsFeature: "center 64%",
+  lampShades: "center center",
+  accentFurniture: "center center",
+  homeDecor: "center center",
+  baskets: "center center",
 } satisfies Record<ProductVisual, string>;
 
 function ProductArtwork({ visual }: { visual: ProductVisual }) {
@@ -107,9 +117,8 @@ export function CuratedProducts() {
               <ProductArtwork visual={activeGroup.featureVisual} />
               <div className="absolute inset-0 bg-gradient-to-b from-ink/5 via-ink/10 to-ink/60" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className="inline-flex items-center gap-2 text-3xl font-bold text-white">
+                <span className="text-3xl font-bold text-white">
                   {activeGroup.label}
-                  <Arrow />
                 </span>
               </div>
             </div>
@@ -184,9 +193,8 @@ export function CuratedProducts() {
                     >
                       <ProductArtwork visual={item.visual} />
                       <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/70 via-ink/25 to-transparent p-4 pt-16">
-                        <p className="flex items-center gap-1 text-xl font-bold leading-tight text-white">
+                        <p className="text-xl font-bold leading-tight text-white">
                           {item.label}
-                          <Arrow className="transition-transform duration-200 group-hover:translate-x-0.5" />
                         </p>
                       </div>
                     </div>

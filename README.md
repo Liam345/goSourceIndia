@@ -117,7 +117,7 @@ src/
     products/              index + [slug] category pages (statically generated)
     capabilities/          hidden future route for QC, compliance, certifications, trade terms
     process/               detailed sourcing process page
-    about/                 story + positioning vs agents and single factories
+    about/                 hidden future route for story + positioning vs agents and single factories
     enquiry/               RFQ form
     api/rfq/route.ts       form handler
   components/
@@ -134,6 +134,9 @@ pick it up automatically.
 Hidden future route: `/capabilities` still exists in the app for future
 reference, but it is intentionally removed from public navigation and returns
 the not-found page on direct visits.
+
+Hidden future route: `/about` still exists in the app for future reference, but
+it is intentionally removed from public navigation.
 
 The `/process` route is a live page for the detailed GoSourceIndia sourcing
 process. It is linked from the main navigation.

@@ -534,6 +534,17 @@ export const curatedProducts = {
         { label: "Women", visual: "women" },
       ],
     },
+    {
+      id: "handicrafts",
+      label: "Handicrafts",
+      featureVisual: "handicraftsFeature",
+      items: [
+        { label: "Lamp shades", visual: "lampShades" },
+        { label: "Accent furniture", visual: "accentFurniture" },
+        { label: "Home decor", visual: "homeDecor" },
+        { label: "Baskets", visual: "baskets" },
+      ],
+    },
   ],
 } as const;
 
@@ -673,5 +684,4 @@ export const tradeTerms = {
 export const nav = [
   { href: "/products", label: "Products" },
   { href: "/process", label: "Process" },
-  { href: "/about", label: "About" },
 ];
