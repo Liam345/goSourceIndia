@@ -11,8 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function EnquiryPage() {
-  const whatsappDigits = contact.whatsapp.replace(/\D/g, "");
-
   return (
     <Container>
       <div className="grid gap-14 py-20 sm:py-24 lg:grid-cols-12 lg:gap-16">
@@ -78,26 +76,6 @@ export default function EnquiryPage() {
                     {contact.email}
                   </a>
                 </li>
-                <li>
-                  <a
-                    href={`tel:${contact.phone.replace(/\s/g, "")}`}
-                    className="text-indigo-deep transition-colors hover:text-clay"
-                  >
-                    {contact.phone}
-                  </a>
-                </li>
-                {whatsappDigits && (
-                  <li>
-                    <a
-                      href={`https://wa.me/${whatsappDigits}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-indigo-deep transition-colors hover:text-clay"
-                    >
-                      WhatsApp
-                    </a>
-                  </li>
-                )}
               </ul>
               <p className="mt-5 text-sm leading-relaxed text-muted">
                 We work IST but reply across EU, UK and US hours.
